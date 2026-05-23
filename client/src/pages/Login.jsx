@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("http://localhost:3003/auth/login", { email, password });
+      const res = await axios.post("https://shopflow-production-3186.up.railway.app/auth/login", { email, password });
       login(res.data.token, res.data.email);
       navigate("/");
     } catch (err) {

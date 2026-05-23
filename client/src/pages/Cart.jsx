@@ -11,7 +11,7 @@ const Cart = () => {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/cart", {
+      const res = await axios.get("https://shopflow-production-3186.up.railway.app/cart", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCart(res.data);
@@ -24,7 +24,7 @@ const Cart = () => {
   useEffect(() => { fetchCart(); }, []);
 
   const removeItem = async (id) => {
-    await axios.delete(`http://localhost:3003/cart/${id}`, {
+    await axios.delete(`https://shopflow-production-3186.up.railway.app/cart/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     fetchCart();
@@ -32,7 +32,7 @@ const Cart = () => {
 
   const updateQuantity = async (id, quantity) => {
     if (quantity < 1) return;
-    await axios.put(`http://localhost:3003/cart/${id}`,
+    await axios.put(`https://shopflow-production-3186.up.railway.app/cart/${id}`,
       { quantity },
       { headers: { Authorization: `Bearer ${token}` } }
     );

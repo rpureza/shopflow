@@ -25,7 +25,7 @@ const CheckoutForm = ({ cart, total }) => {
     try {
       // Create payment intent
       const { data } = await axios.post(
-        "http://localhost:3003/payment/create-payment-intent",
+        "https://shopflow-production-3186.up.railway.app/payment/create-payment-intent",
         { amount: total },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -49,7 +49,7 @@ const CheckoutForm = ({ cart, total }) => {
       }));
 
       await axios.post(
-        "http://localhost:3003/orders",
+        "https://shopflow-production-3186.up.railway.app/orders",
         { items, total, stripe_payment_id: result.paymentIntent.id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -82,7 +82,7 @@ const Checkout = () => {
   const { token } = useAuth();
 
   useEffect(() => {
-    axios.get("http://localhost:3003/cart", {
+    axios.get("https://shopflow-production-3186.up.railway.app/cart", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => { setCart(res.data); setLoading(false); })

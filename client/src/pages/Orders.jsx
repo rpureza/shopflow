@@ -8,7 +8,7 @@ const Orders = () => {
   const { token } = useAuth();
 
   useEffect(() => {
-    axios.get("http://localhost:3003/orders", {
+    axios.get("https://shopflow-production-3186.up.railway.app/orders", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => { setOrders(res.data); setLoading(false); })

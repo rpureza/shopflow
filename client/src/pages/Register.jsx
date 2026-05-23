@@ -14,7 +14,7 @@ const Register = () => {
     setError("");
     setSuccess("");
     try {
-      await axios.post("http://localhost:3003/auth/register", { email, password });
+      await axios.post("https://shopflow-production-3186.up.railway.app/auth/register", { email, password });
       setSuccess("Registered successfully! Redirecting...");
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {

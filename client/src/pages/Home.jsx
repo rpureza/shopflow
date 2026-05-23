@@ -9,7 +9,7 @@ const Home = () => {
   const { token } = useAuth();
 
   useEffect(() => {
-    axios.get("http://localhost:3003/products")
+    axios.get("https://shopflow-production-3186.up.railway.app/products")
       .then((res) => { setProducts(res.data); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
@@ -17,7 +17,7 @@ const Home = () => {
   const addToCart = async (productId) => {
     if (!token) { setMessage("Please login to add to cart!"); return; }
     try {
-      await axios.post("http://localhost:3003/cart",
+      await axios.post("https://shopflow-production-3186.up.railway.app/cart",
         { product_id: productId, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
