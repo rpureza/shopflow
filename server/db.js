@@ -1,11 +1,13 @@
-const mysql = require("mysql2");
+﻿const mysql = require("mysql2");
 require("dotenv").config();
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
+  port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "1234",
   database: process.env.DB_NAME || "shopflow",
+  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : undefined,
 });
 
 db.connect((err) => {
@@ -13,7 +15,7 @@ db.connect((err) => {
     console.error("MySQL connection error:", err.message);
     process.exit(1);
   }
-  console.log("✅ MySQL Connected to shopflow");
+  console.log("MySQL Connected to", process.env.DB_NAME || "shopflow");
 
   db.query(`CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
